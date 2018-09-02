@@ -1,0 +1,41 @@
+extends layout
+
+block head
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+  script.
+      $(document).ready(function() {
+        $('#btn-generate').click(function() {
+          $.ajax({
+            method: 'post',
+            url: '/admin/tokens',
+            success: function(token) {
+              $("#token").val(token);
+            },
+            error: function(result) {
+              if (result.responseText) {
+                alert(result.responseText);
+              }
+            }
+          });
+        });
+      });
+
+block content
+  .container
+    .columns
+      .column.is-two-fifths.is-offset-one-quarter
+        h1.title.has-text-centered= title
+      .column.is-two-fifths.is-offset-one-quarter.has-text-centered
+        nav.navbar
+          div.navbar-brand
+            a.navbar-item(href='/admin/tokens') Token list
+            a.navbar-item(href='/admin/logout') Logout
+
+    div
+      .field.columns
+        .column.is-two-fifths.is-offset-one-quarter
+          label(for='token') Token:
+          input#token.input(type='text', name='token' readonly)
+      .field.columns
+        .column.is-two-fifths.is-offset-one-quarter
+          button#btn-generate.button.is-primary(type='button') Generate

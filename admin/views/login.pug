@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .container
+    .columns
+      .column.is-two-fifths.is-offset-one-quarter
+        h1.title.has-text-centered= title
+    form(method='POST' action='/admin/login')
+      .field.columns
+        .column.is-two-fifths.is-offset-one-quarter
+          label(for='username') Username:
+          input#username.input(type='text', placeholder='Username' name='username' autofocus)
+      .field.columns
+        .column.is-two-fifths.is-offset-one-quarter
+          label(for='password') Password:
+          input#password.input(type='password', name='password')
+      .field.columns
+        .column.is-two-fifths.is-offset-one-quarter
+          button.button.is-primary(type='submit') Login

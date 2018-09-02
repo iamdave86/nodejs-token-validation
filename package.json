@@ -1,0 +1,52 @@
+{
+  "name": "nodejs-token-validation",
+  "version": "1.0.0",
+  "description": "Token creation and validation app in NodeJS (Express). Basic authentication with Passport.",
+  "scripts": {
+    "start": "node index",
+    "watch": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daveedx/nodejs-token-validation"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "express",
+    "expressjs",
+    "mongodb",
+    "mongoose",
+    "passport",
+    "passportjs"
+  ],
+  "author": "David Bodrogi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daveedx/nodejs-token-validation/issues"
+  },
+  "homepage": "https://github.com/daveedx/nodejs-token-validation#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "mongoose": "^5.2.9",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.18.3",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.3",
+    "rand-token": "^0.4.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.6",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}

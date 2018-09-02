@@ -1,0 +1,63 @@
+extends layout
+
+block head
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+  script.
+      $(document).ready(function() {
+        $('.icon-delete').click(function(e) {
+          e.preventDefault();
+
+          var token = $(this).data('token');
+
+          if (!token) {
+            return;
+          }
+
+          if (confirm('Are you sure?')) {
+            $.ajax({
+              method: 'delete',
+              url: '/admin/tokens/' + token,
+              success: function(result) {
+                if (result.error) {
+                  return alert(result.error);
+                }
+
+                location.reload();
+              },
+              error: function(result) {
+                if (result.responseText) {
+                  alert(result.responseText);
+                }
+              }
+            });
+          }
+        });
+      });
+
+block content
+  .container
+    .columns
+      .column.is-two-fifths.is-offset-one-quarter
+        h1.title.has-text-centered= title
+      .column.is-two-fifths.is-offset-one-quarter.has-text-centered
+        nav.navbar
+          div.navbar-brand
+            a.navbar-item(href='/admin') Token generate
+            a.navbar-item(href='/admin/logout') Logout
+
+    div
+      table.table
+        thead
+          tr
+            th Token
+            th Created at
+            th Expiry at
+            th Delete
+        tbody#list
+          each token in tokens
+            tr
+              td= token.hash
+              td= token.created_at
+              td= token.expiry_at
+              td.has-text-centered
+                a.delete.icon-delete(href='#' data-token=token.hash)

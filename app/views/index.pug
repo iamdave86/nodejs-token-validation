@@ -1,0 +1,52 @@
+extends layout
+
+block head
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+  script.
+      $(document).ready(function() {
+        var $button = $('#btn-validate');
+
+        $button.click(function() {
+          var token = $.trim($('#token').val());
+
+          if (!token.length) {
+            return;
+          }
+
+          $button.addClass('is-loading');
+
+          $.ajax({
+            method: 'get',
+            url: '/tokens/' + token,
+            success: function(validationText) {
+              $('#validation-text').html(validationText);
+            },
+            complete: function(result) {
+              $button.removeClass('is-loading');
+            },
+            error: function(result) {
+              if (result.responseText) {
+                $('#validation-text').html(result.responseText);
+              }
+            }
+          });
+        });
+      });
+
+block content
+  .container
+    .columns
+      .column.is-two-fifths.is-offset-one-quarter
+        h1.title.has-text-centered= title
+
+    div
+      .field.columns
+        .column.is-two-fifths.is-offset-one-quarter
+          label(for='token') Insert your token and click the button below
+          input#token.input(type='text', name='token')
+      .field.columns
+        .column.is-two-fifths.is-offset-one-quarter
+          button#btn-validate.button.is-primary(type='button') Validate
+      .columns
+        .column.is-two-fifths.is-offset-one-quarter
+          p#validation-text
