@@ -2,13 +2,11 @@
   "name": "nodejs-token-validation",
   "version": "1.0.0",
   "description": "Token creation and validation app in NodeJS (Express). Basic authentication with Passport.",
+  "author": "iamdave86 (https://github.com/iamdave86)",
+  "repository": "https://github.com/iamdave86/nodejs-token-validation",
   "scripts": {
     "start": "node index",
     "watch": "nodemon index"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/daveedx/nodejs-token-validation"
   },
   "keywords": [
     "node",
